@@ -1,7 +1,10 @@
 ROTTE PER ACCEDERE ALLE FUNZIONI:
-per l'aggiunta di un nuovo progetto
+
+Per l'AGGIUNTA di un nuovo progetto
+
   /AggiuntaProgetto metodo POST
   dati richiesti: 
+  
       ID,
       nome,
       descrizione,
@@ -12,9 +15,11 @@ per l'aggiunta di un nuovo progetto
       eta_minima
 
 
-per la modifica di un progetto esistente:
+Per la MODIFICA di un progetto esistente:
+
   /ModificaProgetto/{progettoID} metodo POST
   dati richiesti:
+  
       nome,
       descrizione,
       data_inizio,
@@ -24,14 +29,17 @@ per la modifica di un progetto esistente:
       eta_minima
 
 
-per l'eliminazione di un progetto esistente:
+Per l'ELIMINAZIONE di un progetto esistente:
     /EliminazioneProgetto/{progettoID} metodo POST
 
 
 
+
+
 LIBRERIE E MIDDLEWARE ESTERNI UTILIZZATI:
-Express, 
-Axios,
-Morgan,
-Cors,
-PUG
+
+	Express, 
+	Axios,
+	Morgan,
+	Cors,
+	PUG
