@@ -44,7 +44,7 @@ app.get('/AggiuntaProgetto', (req, res) => {
 });
 
 
-app.get('/EliminazioneProgetto', (req, res) => {
+app.get('/EliminazioneProgetto/:ID', (req, res) => {
   res.render('EliminazioneProgetto');
 });
 
@@ -195,12 +195,12 @@ app.post('/ModificaProgetto/:ID', (req, res) => {
 
 
 
-app.post('/EliminazioneProgetto', (req, res) => {
-  const ID = req.body.ID;
+app.post('/EliminazioneProgetto/:ID', (req, res) => {
+  const ID = req.params.ID; 
   let config = {
     method: 'delete',
     maxBodyLength: Infinity,
-    url: 'http://scamanit.alwaysdata.net/progetto/' + ID + '',
+    url: `http://scamanit.alwaysdata.net/progetto/${ID}`, 
     headers: {},
     data: {
       ID
@@ -209,12 +209,13 @@ app.post('/EliminazioneProgetto', (req, res) => {
 
   axios.request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
+      console.log("Progetto eliminato con successo:", response.data);
+      res.send("Progetto eliminato con successo!");
     })
     .catch((error) => {
-      console.log(error);
+      console.error("Errore durante l'eliminazione del progetto:", error);
+      res.status(500).send("Si è verificato un errore durante l'eliminazione del progetto.");
     });
-
 });
 
 
