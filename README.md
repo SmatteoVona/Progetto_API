@@ -5,7 +5,7 @@ Per l'AGGIUNTA di un nuovo progetto
   /AggiuntaProgetto metodo POST
   dati richiesti: 
   
-      ID,
+      id,
       nome,
       descrizione,
       data_inizio,
@@ -17,9 +17,10 @@ Per l'AGGIUNTA di un nuovo progetto
 
 Per la MODIFICA di un progetto esistente:
 
-  /ModificaProgetto/{progettoID} metodo POST
+  /ModificaProgetto metodo POST
   dati richiesti:
   
+      id
       nome,
       descrizione,
       data_inizio,
@@ -30,7 +31,10 @@ Per la MODIFICA di un progetto esistente:
 
 
 Per l'ELIMINAZIONE di un progetto esistente:
-    /EliminazioneProgetto/{progettoID} metodo POST
+    /EliminazioneProgetto metodo POST
+    dati richiesti:
+  
+      id
 
 
 
