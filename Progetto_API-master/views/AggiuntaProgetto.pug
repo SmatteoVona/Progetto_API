@@ -4,6 +4,8 @@ html(lang="it")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Inserimento Progetto di Volontariato
+    link(rel='stylesheet' href='../public/css/aggiuntaprogetto.css')
+
   body
     h1 Inserimento Progetto di Volontariato
     form(action="/AggiuntaProgetto", method="POST")
@@ -32,3 +34,4 @@ html(lang="it")
       input(type="number", name="eta_minima", required)
       br
       button(type="submit") Inserisci
+    a(href="/Index") Azioni disponibili

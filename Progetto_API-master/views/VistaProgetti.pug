@@ -4,6 +4,8 @@ html(lang="it")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Pagina Dati Alwaysdata
+    link(rel='stylesheet' href='../public/css/vista.css')
+
   body
     h1 Dati Alwaysdata
     if dati
@@ -18,3 +20,6 @@ html(lang="it")
           li Età minima: #{dato.eta_minima}
     else
       p Nessun dato disponibile
+    
+  a(href="/Index") Azioni disponibili
+

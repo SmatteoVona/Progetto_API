@@ -4,11 +4,13 @@ html(lang="it")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Modifica Progetto
+    link(rel='stylesheet' href='../public/css/modificazione.css')
+
   body
     h1 Modifica Progetto
-    form(action=`/ModificaProgetto/${progettoId}`, method="post")
-      //label(for="ID") ID progetto:
-      //input(type="number", id="ID", name="ID")
+    form(action=`/ModificaProgetto`, method="post")
+      label(for="ID") ID progetto:
+      input(type="number", id="ID", name="ID")
       label(for="nome") Nome del progetto:
       input(type="text", id="nome", name="nome")
       label(for="descrizione") Descrizione del progetto:
@@ -24,3 +26,6 @@ html(lang="it")
       label(for="eta_minima") Età minima:
       input(type="number", id="eta_minima", name="eta_minima")
       button(type="submit") Modifica Progetto
+    
+    a(href="/Index") Azioni disponibili
+

@@ -27,6 +27,7 @@ app.use(helmet());
 
 app.use(cors());
 
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 
 //configurazione del bodyparser per la gestione dei dati inviati tramite http
@@ -44,20 +45,30 @@ app.get('/AggiuntaProgetto', (req, res) => {
 });
 
 
-app.get('/EliminazioneProgetto/:id', (req, res) => {
-  //const id = req.params.id;
-  res.render('EliminazioneProgetto', {id});
+app.get('/EliminazioneProgetto', (req, res) => {
+  res.render('EliminazioneProgetto');
 });
 
 
-app.get('/ModificazioneProgetto/:ID', (req, res) => {
+app.get('/ModificazioneProgetto', (req, res) => {
   res.render('ModificazioneProgetto');
 });
 
 
-
 app.get('/', (req, res) => {
   res.render('Index');
+});
+
+app.get('/Index', (req, res) => {
+  res.render('Index');
+});
+
+app.get('/ResponsoPositivo', (req, res) => {
+  res.render('ResponsoPositivo');
+});
+
+app.get('/ResponsoNegativo', (req, res) => {
+  res.render('ResponsoNegativo');
 });
 
 
@@ -71,7 +82,8 @@ app.get('/VistaProgetti', async (req, res) => {
 
   } catch (error) {
     console.error("Errore durante il recupero dei dati da Alwaysdata:", error);
-    res.status(500).send("Si è verificato un errore durante il recupero dei dati da Alwaysdata.");
+    res.redirect('/ResponsoNegativo');
+
   }
 });
 
@@ -102,16 +114,17 @@ app.post('/AggiuntaProgetto', (req, res) => {
   axios.request(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
+      res.redirect('/ResponsoPositivo');
     })
     .catch((error) => {
       console.log(error);
+      res.redirect('/ResponsoNegativo');
     });
-
 });
 
 
 
-app.post('/ModificaProgetto/:id', (req, res) => {
+app.post('/ModificaProgetto', (req, res) => {
   const { id, nome, descrizione, data_inizio, data_fine, latitudine, longitudine, eta_minima } = req.body;
 
   let config = {
@@ -135,20 +148,19 @@ app.post('/ModificaProgetto/:id', (req, res) => {
 
   axios.request(config)
     .then((response) => {
-      console.log("Progetto modificato con successo:", response.data);
-      res.send("Progetto modificato con successo!");
+      console.log(JSON.stringify(response.data));
+      res.redirect('/ResponsoPositivo');
     })
     .catch((error) => {
-      console.error("Errore durante la modifica del progetto:", error);
-      res.status(500).send("Si è verificato un errore durante la modifica del progetto.");
+      console.log(error);
+      res.redirect('/ResponsoNegativo');
     });
-
 });
 
 
 
 
-app.post('/EliminazioneProgetto/:id', (req, res) => {
+app.post('/EliminazioneProgetto', (req, res) => {
   const id = req.params.id;
   let config = {
     method: 'delete',
@@ -163,9 +175,11 @@ app.post('/EliminazioneProgetto/:id', (req, res) => {
   axios.request(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
+      res.redirect('/ResponsoPositivo');
     })
     .catch((error) => {
       console.log(error);
+      res.redirect('/ResponsoNegativo');
     });
 });
 
