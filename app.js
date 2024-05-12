@@ -47,42 +47,42 @@ function validaDatiProgetto(req) {
 
   const dataInizioDate = new Date(data_inizio);
   const dataFineDate = new Date(data_fine);
-  
+
   // Esegui i controlli sui dati e restituisci eventuali errori
   if (isNaN(idNum) || isNaN(latitudineNum) || isNaN(longitudineNum) || isNaN(etaMinimaNum)) {
-      return {
-          errore: 'Formato dati errato',
-          dettagli: 'id, latitudine, longitudine, eta_minima devono essere numerici'
-      };
+    return {
+      errore: 'Formato dati errato',
+      dettagli: 'id, latitudine, longitudine, eta_minima devono essere numerici'
+    };
   }
 
-  if (etaMinimaNum<0){
-    return{
-      errore : 'Dati inseriti impossibili',
+  if (etaMinimaNum < 0) {
+    return {
+      errore: 'Dati inseriti impossibili',
       dettagli: 'Non è possibile inserire un età minima negativa'
     };
   }
-  
+
   if (typeof nome !== 'string' || typeof descrizione !== 'string') {
-      return {
-          errore: 'Formato dati errato',
-          dettagli: 'nome e descrizione devono essere stringhe'
-      };
+    return {
+      errore: 'Formato dati errato',
+      dettagli: 'nome e descrizione devono essere stringhe'
+    };
   }
-  
+
   if (isNaN(dataInizioDate.getTime()) || isNaN(dataFineDate.getTime())) {
     return {
-        errore: 'Formato dati errato',
-        dettagli: 'data_inizio e data_fine devono essere date valide'
+      errore: 'Formato dati errato',
+      dettagli: 'data_inizio e data_fine devono essere date valide'
     };
-}
+  }
 
-if (dataInizioDate >= dataFineDate) {
-  return {
+  if (dataInizioDate >= dataFineDate) {
+    return {
       errore: 'Dati inseriti impossibili',
       dettagli: 'La data di inizio deve essere precedente alla data di fine'
-  };
-}
+    };
+  }
 
   // Se tutti i controlli passano, i dati sono validi
   return { valido: true };
@@ -178,7 +178,8 @@ app.post('/AggiuntaProgetto', (req, res) => {
     // I dati non sono validi, mostra messaggio di errore
     const { errore, dettagli } = risultatoValidazione;
     console.error(errore, dettagli);
-    res.status(400).render('ResponsoNegativo', { errore: errore, dettagli: dettagli })}
+    res.status(400).render('ResponsoNegativo', { errore: errore, dettagli: dettagli })
+  }
 
 });
 
@@ -186,33 +187,33 @@ app.post('/AggiuntaProgetto', (req, res) => {
 
 app.post('/EliminazioneProgetto', (req, res) => {
   const id = req.params.id;
-  try{
+  try {
     const validatedData = validateData({
       id
     });
 
-  
-  const config = {
-    method: 'delete',
-    maxBodyLength: Infinity,
-    url: `http://scamanit.alwaysdata.net/progetto/${id}`,
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    data: validatedData
-  };
 
-  axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      res.redirect('/ResponsoPositivo');
-    })
+    const config = {
+      method: 'delete',
+      maxBodyLength: Infinity,
+      url: `http://scamanit.alwaysdata.net/progetto/${id}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: validatedData
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        res.redirect('/ResponsoPositivo');
+      })
   }
-    catch (error) {
-      // Gestisci l'errore di convalida
-      console.error(error.message);
-      res.redirect('/ResponsoNegativo');
-    }
+  catch (error) {
+    // Gestisci l'errore di convalida
+    console.error(error.message);
+    res.redirect('/ResponsoNegativo');
+  }
 });
 
 app.post('/ModificaProgetto', (req, res) => {
