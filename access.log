@@ -465,3 +465,15 @@
 ::1 - GET /public/css/eliminazione.css HTTP/1.1 304 - - 0.825 ms
 ::1 - POST /EliminazioneProgetto HTTP/1.1 500 1986 - 3.014 ms
 ::1 - POST /EliminazioneProgetto HTTP/1.1 500 1986 - 0.737 ms
+::1 - POST /EliminazioneProgetto HTTP/1.1 400 445 - 270.988 ms
+::1 - GET /public/css/responsonegativo.css HTTP/1.1 304 - - 1.817 ms
+::1 - GET /Index HTTP/1.1 304 - - 13.974 ms
+::1 - GET /public/css/index.css HTTP/1.1 304 - - 0.629 ms
+::1 - GET /AggiuntaProgetto HTTP/1.1 304 - - 22.795 ms
+::1 - GET /public/css/aggiuntaprogetto.css HTTP/1.1 304 - - 4.772 ms
+::1 - GET /EliminazioneProgetto HTTP/1.1 304 - - 5.547 ms
+::1 - GET /public/css/eliminazione.css HTTP/1.1 304 - - 1.413 ms
+::1 - GET /ModificazioneProgetto HTTP/1.1 304 - - 13.755 ms
+::1 - GET /public/css/modificazione.css HTTP/1.1 304 - - 0.762 ms
+::1 - GET /VistaProgetti HTTP/1.1 304 - - 147.214 ms
+::1 - GET /public/css/vista.css HTTP/1.1 304 - - 2.005 ms
