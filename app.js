@@ -261,7 +261,7 @@ app.post('/EliminazioneProgetto', (req, res) => {
     const { ID } = req.body;
 
     let config = {
-      method: 'post',
+      method: 'delete',
       maxBodyLength: Infinity,
       url: 'http://scamanit.alwaysdata.net/progetto',
       headers: {
@@ -297,7 +297,7 @@ app.post('/ModificaProgetto', (req, res) => {
     const { ID, nome, descrizione, data_inizio, data_fine, latitudine, longitudine, eta_minima } = req.body;
 
     let config = {
-      method: 'post',
+      method: 'put',
       maxBodyLength: Infinity,
       url: 'http://scamanit.alwaysdata.net/progetto',
       headers: {
